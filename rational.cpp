@@ -18,6 +18,6 @@ Rational mult(const Rational &a, const Rational &b) {
 
 Rational div(const Rational &a, const Rational &b) {
 
-  return Rational(a.numerator() * b.numerator(),
-		  a.denominator() * b.denominator());
+  return Rational(a.numerator() * b.denominator(), //Changed to a(num) * b(denom)
+		  a.denominator() * b.numerator());    //Changed to a(denom) * b(num)
 }
