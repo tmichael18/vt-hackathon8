@@ -3,5 +3,6 @@
 #define FUNCTIONS_HPP
 
 
-
+void getLastName();
+void getFirstName();
 #endif
