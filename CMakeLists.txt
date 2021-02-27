@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9...3.19)
-project(Ex02 CXX)
+project(VTH8 CXX)
 
 # require a C++11 compiler for all targets
 set(CMAKE_CXX_STANDARD 11)
@@ -11,9 +11,9 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 # build test driver
 add_executable(unit_tests
   unit_tests.cpp
-  test_rational.cpp
-  rational.hpp
-  rational.cpp)
+  test_functions.cpp
+  functions.hpp
+  functions.cpp)
 
 # enable testing
 include(CTest)
