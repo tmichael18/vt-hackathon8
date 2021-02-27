@@ -56,30 +56,76 @@ std::string getStreetNum() {
 
 std::string getStreetAddress() {
 
-	return "temp";
+	std::size_t lineno = 1;
+	int linetarget = (rand() % 146) + 1;
+	std::ifstream myfile;
+	std::string linestr;
+
+	myfile.open("StreetNames.txt");
+
+	while (lineno < linetarget) {
+
+		std::getline(myfile, linestr);
+		lineno++;
+	}
+
+	myfile.close();
+	return linestr;
 }
 
 std::string getCity() {
 
-	return "temp";
+	std::size_t lineno = 1;
+	int linetarget = (rand() % 146) + 1;
+	std::ifstream myfile;
+	std::string linestr;
+
+	myfile.open("CityNames.txt");
+
+	while (lineno < linetarget) {
+
+		std::getline(myfile, linestr);
+		lineno++;
+	}
+
+	myfile.close();
+	return linestr;
 }
 
 std::string getState() {
 
-	return "temp";
+	std::size_t lineno = 1;
+	int linetarget = (rand() % 146) + 1;
+	std::ifstream myfile;
+	std::string linestr;
+
+	myfile.open("StateNames.txt");
+
+	while (lineno < linetarget) {
+
+		std::getline(myfile, linestr);
+		lineno++;
+	}
+
+	myfile.close();
+	return linestr;
 }
 
 std::string getZipCode() {
 
-	return "temp";
+	int zipcode = (rand() % 30000 + 200);
+	std::string zipcodestring = std::to_string(zipcode);
+
+	return zipcodestring;
 }
 
-int getInitialBalance() {
+int getInitialBalance() { //this is weight based
 
 	return 0;
 }
 
-double getDeposit() { //need 12
+double getDeposit() { //need 12 of each of these
+	//data for this method is in the server, using weighted distrubtion, pinned
 
 	return 0;
 }
