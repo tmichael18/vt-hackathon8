@@ -137,7 +137,8 @@ double getDeposit() { //need 12 of each of these
 	//data for this method is in the server, using weighted distrubtion, pinned
 
 	double weight = getRandomPercentage();
-	double deposit;
+	int deposit = 0.0;
+	double r_deposit;
 
 	//using if else sytax
 	if (weight < 11.3) {
@@ -145,80 +146,81 @@ double getDeposit() { //need 12 of each of these
 		//gets random number between 0 and 10000
 		deposit = rand() % 10001; 
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 19.3) {
 
 		//gets random number between 10000 and 14999
 		deposit = rand() % 5000 + 10000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 33.2) {
 
 		//gets random number between 15000 and 24999
 		deposit = rand() % 10000 + 15000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 45.0) {
 
 		//gets random number between 25000 and 34999
 		deposit = rand() % 10000 + 25000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 59.5) {
 
 		//gets random number between 35000 and 49999
 		deposit = rand() % 15000 + 35000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 76.4) {
 
 		//gets random number between 50000 and 74999
 		deposit = rand() % 25000 + 50000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 85.6) {
 
 		//gets random number between 75000 and 99999
 		deposit = rand() % 25000 + 75000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 94) {
 
 		//gets random number between 100000 and 149999
 		deposit = rand() % 50000 + 100000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 96.9) {
 
 		//gets random number between 150000 and 199999
 		deposit = rand() % 50000 + 150000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 99.7) {
 
 		//gets random number between 200000 and 500000
 		deposit = rand() % 300000 + 200000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 	else if (weight < 100.0) {
 
 		//gets random number between 500000 and 1000000
 		deposit = rand() % 500000 + 500000;
 		deposit /= 12;
-		return deposit;
+		//return deposit;
 	}
 
-	return deposit = 0.0;
+	r_deposit = (double)deposit + rand();
+	return r_deposit;
 }
 
 int getWithdrawal() {
