@@ -17,11 +17,15 @@ std::string getZipCode();
 
 int getInitialBalance();
 
-double getDeposit();
+std::string getDeposit();
 int getWithdrawal();
 double getLoans();
 double getPurchases();
 double getBalance();
+
+//other supporting functions
+double getRandomPercentage();
+double getDecimal();
 
 
 #endif

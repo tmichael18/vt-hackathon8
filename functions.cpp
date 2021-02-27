@@ -7,12 +7,25 @@
 #include <string>
 #include <random>
 
+double getDecimal() {
+
+	float temp = (float)rand() / RAND_MAX; //get double between 0-1, 0.76543
+
+	std::string num = std::to_string(temp); //create string
+
+	num.erase(4); //cut string, 0.76
+
+	double returndouble = stod(num); //turn it back into double
+
+	return returndouble; //return double
+}
+
 double getRandomPercentage() {
 	//returns a random percent of the form xx.xx
 
 	int percent1 = rand() % 100; //returns between 0 - 99
-	double percent2 = rand(); //returns between 0 - 1
-	double weight = (double)percent1 + percent2;
+	//double percent2 = rand(); //returns between 0 - 1
+	double weight = (double)percent1 + getDecimal();
 	return weight;
 }
 
@@ -133,12 +146,12 @@ int getInitialBalance() { //this is weight based
 	return 0;
 }
 
-double getDeposit() { //need 12 of each of these
+std::string getDeposit() { //need 12 of each of these
 	//data for this method is in the server, using weighted distrubtion, pinned
 
 	double weight = getRandomPercentage();
-	int deposit = 0.0;
-	double r_deposit;
+	int deposit = 0;
+	double t_deposit;
 
 	//using if else sytax
 	if (weight < 11.3) {
@@ -219,8 +232,17 @@ double getDeposit() { //need 12 of each of these
 		//return deposit;
 	}
 
-	r_deposit = (double)deposit + rand();
+	t_deposit = (double)deposit + getDecimal();
+	std::string s_deposit = std::to_string(t_deposit);
+	//need to get rid of tailing 0's
+	//TODO
+
+	std::string r_deposit = s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
+						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
+						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
+						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit;
 	return r_deposit;
+	//return r_deposit;
 }
 
 int getWithdrawal() {
