@@ -9,7 +9,7 @@ TEST_CASE("Saving .csv file", "[functions]"){
 	std::ofstream myfile;
 	myfile.open("data.csv");
 	myfile << "This is the first cell in the first column.\n";
-	for (int i = 1; i < 10; i++) {
+	for (int i = 1; i < 1001; i++) {
 
 		myfile << i << "," << getFirstName() << "," << getLastName() << "," << getStreetNum()
 			<< "," << getStreetAddress() << "," << getCity() << "," << getState()

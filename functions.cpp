@@ -7,6 +7,15 @@
 #include <string>
 #include <random>
 
+double getRandomPercentage() {
+	//returns a random percent of the form xx.xx
+
+	int percent1 = rand() % 100; //returns between 0 - 99
+	double percent2 = rand(); //returns between 0 - 1
+	double weight = (double)percent1 + percent2;
+	return weight;
+}
+
 
 std::string getFirstName() {
 	
@@ -57,7 +66,7 @@ std::string getStreetNum() {
 std::string getStreetAddress() {
 
 	std::size_t lineno = 1;
-	int linetarget = (rand() % 146) + 1;
+	int linetarget = (rand() % 100) + 1;
 	std::ifstream myfile;
 	std::string linestr;
 
@@ -76,7 +85,7 @@ std::string getStreetAddress() {
 std::string getCity() {
 
 	std::size_t lineno = 1;
-	int linetarget = (rand() % 146) + 1;
+	int linetarget = (rand() % 100) + 1;
 	std::ifstream myfile;
 	std::string linestr;
 
@@ -95,7 +104,7 @@ std::string getCity() {
 std::string getState() {
 
 	std::size_t lineno = 1;
-	int linetarget = (rand() % 146) + 1;
+	int linetarget = (rand() % 50) + 1;
 	std::ifstream myfile;
 	std::string linestr;
 
@@ -113,7 +122,7 @@ std::string getState() {
 
 std::string getZipCode() {
 
-	int zipcode = (rand() % 30000 + 200);
+	int zipcode = (rand() % 30000 + 10000);
 	std::string zipcodestring = std::to_string(zipcode);
 
 	return zipcodestring;
@@ -127,7 +136,89 @@ int getInitialBalance() { //this is weight based
 double getDeposit() { //need 12 of each of these
 	//data for this method is in the server, using weighted distrubtion, pinned
 
-	return 0;
+	double weight = getRandomPercentage();
+	double deposit;
+
+	//using if else sytax
+	if (weight < 11.3) {
+
+		//gets random number between 0 and 10000
+		deposit = rand() % 10001; 
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 19.3) {
+
+		//gets random number between 10000 and 14999
+		deposit = rand() % 5000 + 10000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 33.2) {
+
+		//gets random number between 15000 and 24999
+		deposit = rand() % 10000 + 15000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 45.0) {
+
+		//gets random number between 25000 and 34999
+		deposit = rand() % 10000 + 25000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 59.5) {
+
+		//gets random number between 35000 and 49999
+		deposit = rand() % 15000 + 35000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 76.4) {
+
+		//gets random number between 50000 and 74999
+		deposit = rand() % 25000 + 50000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 85.6) {
+
+		//gets random number between 75000 and 99999
+		deposit = rand() % 25000 + 75000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 94) {
+
+		//gets random number between 100000 and 149999
+		deposit = rand() % 50000 + 100000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 96.9) {
+
+		//gets random number between 150000 and 199999
+		deposit = rand() % 50000 + 150000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 99.7) {
+
+		//gets random number between 200000 and 500000
+		deposit = rand() % 300000 + 200000;
+		deposit /= 12;
+		return deposit;
+	}
+	else if (weight < 100.0) {
+
+		//gets random number between 500000 and 1000000
+		deposit = rand() % 500000 + 500000;
+		deposit /= 12;
+		return deposit;
+	}
+
+	return deposit = 0.0;
 }
 
 int getWithdrawal() {
@@ -149,3 +240,4 @@ double getBalance() {
 
 	return 0;
 }
+
