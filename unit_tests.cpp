@@ -10,9 +10,11 @@
 TEST_CASE("Creating .csv file", "[functions]"){
 	std::ofstream myfile;
 	myfile.open("data.csv");
-	myfile << "index,first_name,last_name,street_number,street_address,city,state,zip_code,initial_balance,1_deposit,2_deposit,3_deposit"
-		   <<"4_deposit,5_deposit,6_deposit,7_deposit,8_deposit,9_deposit,10_deposit,11_deposit,12_deposit,";
-	for (int i = 1; i < 10; i++) {
+	myfile << "index,first_name,last_name,street_number,street_address,city,state,zip_code,initial_balance,"
+		   << "1_deposit,2_deposit,3_deposit,4_deposit,5_deposit,6_deposit,7_deposit,8_deposit,9_deposit,10_deposit,11_deposit,12_deposit,"
+		   << "1_loans,2_loans,3_loans,4_loans,5_loans,6_loans,7_loans,8_loans,9_loans,10_loans,11_loans,12_loans,"
+		   << "1_purchases,2_purchases,3_purchases,4_purchases,5_purchases,6_purchases,7_purchases,8_purchases,9_purchases,10_purchases,11_purchases,12_purchases\n";
+	for (int i = 1; i < 11; i++) {
 
 		std::string deposits = getDeposit();
 		double income = getIncomeBasedOnDeposit(deposits);
@@ -38,11 +40,14 @@ TEST_CASE("Creating .csv file", "[functions]"){
 			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getPurchases(deposits)
 			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getPurchases(deposits)
 			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getPurchases(deposits)
-			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getBalance()
+			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) 
+			/*<< "," << getBalance()
 			<< "," << getBalance() << "," << getBalance() << "," << getBalance()
 			<< "," << getBalance() << "," << getBalance() << "," << getBalance()
 			<< "," << getBalance() << "," << getBalance() << "," << getBalance()
-			<< "," << getBalance() << "," << getBalance() << "\n";
+			<< "," << getBalance() << "," << getBalance() 
+			*/
+			<< "\n";
 	}
 
 	myfile.close();

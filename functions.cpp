@@ -323,8 +323,8 @@ std::string getDeposit() { //need 12 of each of these
 
 	std::string r_deposit = s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
 						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
-						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
 						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit;
+	  
 	return r_deposit;
 	//return r_deposit;
 }
@@ -384,10 +384,42 @@ int getWithdrawal(std::string deposit) {
 }
 */
 
-double getLoans(std::string deposit) {
+std::string getLoans(std::string deposit) {
+
+	//80% have debt, ranges between 250-1500 per month, can use normal distribution or 
+	//your process in place for other variables, of those, half dont change each month, and half vary slightly
+	double mean = 875.;
+	double stddev = 200.;
+	double percent = getRandomPercentage();
+	std::string noloans;
+	std::string staticloans;
+	std::string dynamicloans;
+
+	double loan = getRandomNormalLinearizedVariable(mean, stddev);
+
+	if (percent < 40.00) {
+		//condition for static loan
+
+		for (std::size_t i = 0; i < 13; i++) {
 
 
+		}
 
+		return staticloans;
+	}
+	else if (percent < 80.00) {
+		//condition for dynamic loan
+
+		return dynamicloans;
+	}
+	else if (percent < 100.00) {
+		//condition for no loans
+
+		return noloans;
+	}
+
+
+	return "its fucking 4am";
 }
 
 double getPurchases(std::string deposit) {
