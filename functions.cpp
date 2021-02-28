@@ -29,6 +29,25 @@ double getRandomPercentage() {
 	return weight;
 }
 
+//supporting function used to get income
+double getIncomeBasedOnDeposit(std::string s_deposit) {
+
+	std::string income;
+	double r_income;
+
+	for (std::size_t i = 0; i < s_deposit.size(); i++) {
+
+		if (s_deposit[i] == ',') {
+
+			income = s_deposit.erase(i);
+		}
+	}
+
+	r_income = stod(income);
+	r_income *= 12;
+	return r_income;
+}
+
 
 std::string getFirstName() {
 	
@@ -141,11 +160,6 @@ std::string getZipCode() {
 	return zipcodestring;
 }
 
-int getInitialBalance() { //this is weight based
-
-	return 0;
-}
-
 std::string getDeposit() { //need 12 of each of these
 	//data for this method is in the server, using weighted distrubtion, pinned
 
@@ -159,84 +173,87 @@ std::string getDeposit() { //need 12 of each of these
 		//gets random number between 0 and 10000
 		deposit = rand() % 10001; 
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 19.3) {
 
 		//gets random number between 10000 and 14999
 		deposit = rand() % 5000 + 10000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 33.2) {
 
 		//gets random number between 15000 and 24999
 		deposit = rand() % 10000 + 15000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 45.0) {
 
 		//gets random number between 25000 and 34999
 		deposit = rand() % 10000 + 25000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 59.5) {
 
 		//gets random number between 35000 and 49999
 		deposit = rand() % 15000 + 35000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 76.4) {
 
 		//gets random number between 50000 and 74999
 		deposit = rand() % 25000 + 50000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 85.6) {
 
 		//gets random number between 75000 and 99999
 		deposit = rand() % 25000 + 75000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 94) {
 
 		//gets random number between 100000 and 149999
 		deposit = rand() % 50000 + 100000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 96.9) {
 
 		//gets random number between 150000 and 199999
 		deposit = rand() % 50000 + 150000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 99.7) {
 
 		//gets random number between 200000 and 500000
 		deposit = rand() % 300000 + 200000;
 		deposit /= 12;
-		//return deposit;
 	}
 	else if (weight < 100.0) {
 
 		//gets random number between 500000 and 1000000
 		deposit = rand() % 500000 + 500000;
 		deposit /= 12;
-		//return deposit;
 	}
 
 	t_deposit = (double)deposit + getDecimal();
 	std::string s_deposit = std::to_string(t_deposit);
+
 	//need to get rid of tailing 0's
-	//TODO
-	s_deposit.erase(s_deposit.end() );
+	for (std::size_t i = 0; i < s_deposit.size(); i++) {
+
+		bool remove = false;
+
+		if (s_deposit[i] == '.') {
+
+			remove = true;
+			i += 3;
+		}
+
+		if (remove == true) {
+
+			s_deposit.erase(i);
+		}
+	}
 
 	std::string r_deposit = s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
 						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
@@ -246,23 +263,145 @@ std::string getDeposit() { //need 12 of each of these
 	//return r_deposit;
 }
 
-int getWithdrawal() {
+int getInitialBalance(std::string deposit) { //this is weight based
+
+	int balance = (int)getIncomeBasedOnDeposit(deposit);
+	return balance;
+}
+
+int getWithdrawal(double income) {
+
+	double weight = getRandomPercentage();
+	int withdraws = 0;
+	
+
+	//using if else sytax
+	if (weight < 10.0) {
+
+		withdraws = rand() % 10001;
+	}
+	else if (weight < 20.0) {
+
+		
+	}
+	else if (weight < 30.0) {
+
+		
+	}
+	else if (weight < 45.0) {
+
+		
+	}
+	else if (weight < 60.0) {
+
+		
+	}
+	else if (weight < 75.0) {
+
+		
+	}
+	else if (weight < 85.0) {
+
+		
+	}
+	else if (weight < 94.0) {
+
+		
+	}
+	else if (weight < 97.0) {
+
+		
+	}
+	else if (weight < 99.7) {
+
+		
+	}
+	else if (weight < 100.0) {
+
+		
+	}
+
 
 	return 0;
 }
 
-double getLoans() {
+double getLoans(double income) {
 
+	double weight = getRandomPercentage();
 	return 0;
 }
 
-double getPurchases() {
+double getPurchases(double income) {
 
+	double weight = getRandomPercentage();
 	return 0;
 }
 
 double getBalance() {
 
+	double weight = getRandomPercentage();
 	return 0;
 }
+
+void Test() {
+
+//     std::string s_deposit = "2855255.5252";
+//     std::string * s_deposit_p = &s_deposit;
+//     // std::cout << s_deposit_p << std::endl;
+//     printf("%s\n",s_deposit_p);
+
+
+//     double IntDeposit = std::stod(s_deposit_p->c_str());
+
+//     std::cout << "stod(\"" << s_deposit << "\") is "
+//     << IntDeposit << '\n';
+
+//     printf("%f\n",IntDeposit);
+
+
+//     double * IntDeposit_p = &IntDeposit;    
+//     printf("The double pointer is :%f\n",IntDeposit_p);
+
+//     //need to get rid of tailing 0's
+//     std::string CutString = "123,45";
+
+//     for (std::size_t i = 0; i < CutString.size(); i++) {
+
+//         bool remove = false;
+
+//         if (CutString[i] == ',') {
+
+//             remove = true;
+//             i ++;
+//         }
+
+//         if (remove == true) {
+
+//             CutString.erase(i-1);
+//         }
+
+//     }
+
+//     printf("%s\n",CutString.c_str() );
+// }
+
+
+// int myint1 = stoi(str1); 
+// int myint2 = stoi(str2); 
+// int myint3 = stoi(str3); 
+
+// cout << "stoi(\"" << str1 << "\") is "
+// << myint1 << '\n'; 
+
+
+//data is based on Deposits*12 
+//based on that assign this value to Normal distribution according to savings (centered around savings)
+
+
+//ex 24 000
+//savings would be 0 in 6000$
+
+}
+
+
 

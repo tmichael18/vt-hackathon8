@@ -13,26 +13,29 @@ TEST_CASE("Creating .csv file", "[functions]"){
 	myfile << "This is the first cell in the first column.\n";
 	for (int i = 1; i < 10; i++) {
 
+		std::string deposits = getDeposit();
+		double income = getIncomeBasedOnDeposit(deposits);
+
 		myfile << i << "," << getFirstName() << "," << getLastName() << "," << getStreetNum()
 			<< "," << getStreetAddress() << "," << getCity() << "," << getState()
-			<< "," << getZipCode() << "," << getInitialBalance() << "," << getDeposit()
+			<< "," << getZipCode() << "," << getInitialBalance(deposits) << "," << deposits
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() 
-			<< "," << getWithdrawal()
-			<< "," << getWithdrawal() << "," << getWithdrawal() << "," << getWithdrawal()
-			<< "," << getWithdrawal() << "," << getWithdrawal() << "," << getWithdrawal()
-			<< "," << getWithdrawal() << "," << getWithdrawal() << "," << getWithdrawal()
-			<< "," << getWithdrawal() << "," << getWithdrawal() << "," << getLoans()
-			<< "," << getLoans() << "," << getLoans() << "," << getLoans()
-			<< "," << getLoans() << "," << getLoans() << "," << getLoans()
-			<< "," << getLoans() << "," << getLoans() << "," << getLoans()
-			<< "," << getLoans() << "," << getLoans() << "," << getPurchases()
-			<< "," << getPurchases() << "," << getPurchases() << "," << getPurchases()
-			<< "," << getPurchases() << "," << getPurchases() << "," << getPurchases()
-			<< "," << getPurchases() << "," << getPurchases() << "," << getPurchases()
-			<< "," << getPurchases() << "," << getPurchases() << "," << getBalance()
+			<< "," << getWithdrawal(income)
+			<< "," << getWithdrawal(income) << "," << getWithdrawal(income) << "," << getWithdrawal(income)
+			<< "," << getWithdrawal(income) << "," << getWithdrawal(income) << "," << getWithdrawal(income)
+			<< "," << getWithdrawal(income) << "," << getWithdrawal(income) << "," << getWithdrawal(income)
+			<< "," << getWithdrawal(income) << "," << getWithdrawal(income) << "," << getLoans(income)
+			<< "," << getLoans(income) << "," << getLoans(income) << "," << getLoans(income)
+			<< "," << getLoans(income) << "," << getLoans(income) << "," << getLoans(income)
+			<< "," << getLoans(income) << "," << getLoans(income) << "," << getLoans(income)
+			<< "," << getLoans(income) << "," << getLoans(income) << "," << getPurchases(income)
+			<< "," << getPurchases(income) << "," << getPurchases(income) << "," << getPurchases(income)
+			<< "," << getPurchases(income) << "," << getPurchases(income) << "," << getPurchases(income)
+			<< "," << getPurchases(income) << "," << getPurchases(income) << "," << getPurchases(income)
+			<< "," << getPurchases(income) << "," << getPurchases(income) << "," << getBalance()
 			<< "," << getBalance() << "," << getBalance() << "," << getBalance()
 			<< "," << getBalance() << "," << getBalance() << "," << getBalance()
 			<< "," << getBalance() << "," << getBalance() << "," << getBalance()
@@ -55,13 +58,19 @@ TEST_CASE("creating Michael's test.csv file", "[functions]") {
 	num.erase(4);
 
 	double returndouble = stod(num);
+
+	std::string deposits = getDeposit();
 	
 	//file for testing
 	myfile << "This is the random percentage1: " << getRandomPercentage() << "\n";
 	myfile << "This is the random percentage2: " << getRandomPercentage() << "\n";
 	myfile << "This is the random percentage3: " << getRandomPercentage() << "\n";
 	myfile << "This is the random percentage4: " << getRandomPercentage() << "\n";
-	myfile << "This is the random percentage5: " << getRandomPercentage() << "\n";
+	myfile << "This is the random percentage5: " << getRandomPercentage() << "\n\n";
+	myfile << "This is the get income tester deposit: " << deposits << "\n";
+	myfile << "This is the get income tester income: " << getIncomeBasedOnDeposit(deposits) << "\n";
+
+	myfile.close();
 }
 
 TEST_CASE("creating Antonio's test2.csv file", "[functions]") {
