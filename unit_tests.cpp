@@ -21,7 +21,7 @@ TEST_CASE("Creating .csv file", "[functions]"){
 
 		myfile << i << "," << getFirstName() << "," << getLastName() << "," << getStreetNum()
 			<< "," << getStreetAddress() << "," << getCity() << "," << getState()
-			<< "," << getZipCode() << "," << getInitialBalance(deposits) << "," << deposits 
+			<< "," << getZipCode() << "," << getInitialBalance(deposits) << "," << deposits << ","
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()

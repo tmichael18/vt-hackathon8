@@ -65,55 +65,55 @@ double getRandomNormalLinearizedVariable(double mean, double stddev) { //NEED TO
 	int ceiling = 0; //ceiling
 	int random = 0;
 
-	if (percent < 0.1) {
+	if (percent < 0.1) { //old .1
 
 		floor = mean - (4 * stddev);
 		ceiling = mean - (3 * stddev);
 		random = rand() % ceiling;
 	}
-	else if (percent < 2.2) {
+	else if (percent < 2.2) { //old 2.2
 
 		floor = mean - (3 * stddev);
 		ceiling = mean - (2 * stddev);
 
 		random = rand() % (ceiling - floor) + floor; 
 	}
-	else if (percent < 15.8) {
+	else if (percent < 15.8) { //old 15.8
 
 		floor = mean - (2 * stddev);
 		ceiling = mean - (1 * stddev);
 
 		random = rand() % (ceiling - floor) + floor;
 	}
-	else if (percent < 49.9) {
+	else if (percent < 49.9) { //old 49.9
 
 		floor = mean - (1 * stddev);
 		ceiling = mean - (0 * stddev);
 
 		random = rand() % (ceiling - floor) + floor;
 	}
-	else if (percent < 84.0) {
+	else if (percent < 84.0) { //old 84
 
 		floor = mean + (0 * stddev);
 		ceiling = mean + (1 * stddev);
 
 		random = rand() % (ceiling - floor) + floor;
 	}
-	else if (percent < 97.6) {
+	else if (percent < 97.6) { //old 97.6
 
 		floor = mean + (1 * stddev);
 		ceiling = mean + (2 * stddev);
 
 		random = rand() % (ceiling - floor) + floor;
 	}
-	else if (percent < 99.7) {
+	else if (percent < 99.7) { //old 99.7
 
 		floor = mean + (2 * stddev);
 		ceiling = mean + (3 * stddev);
 
 		random = rand() % (ceiling - floor) + floor;
 	}
-	else if (percent < 100.0) {
+	else if (percent < 100.0) { //old 100.0
 
 		floor = mean + (3 * stddev);
 		ceiling = mean + (4 * stddev); //need ceiling limt, +4 stddev?
@@ -437,7 +437,7 @@ std::string getLoans() {
 	else {
 		//condition for no loans
 
-		noloans = ",0,0,0,0,0,0,0,0,0,0,0,0,";
+		noloans = "0,0,0,0,0,0,0,0,0,0,0,0,";
 
 		return noloans;
 	}
