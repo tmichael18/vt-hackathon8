@@ -236,6 +236,7 @@ std::string getDeposit() { //need 12 of each of these
 	std::string s_deposit = std::to_string(t_deposit);
 	//need to get rid of tailing 0's
 	//TODO
+	s_deposit.erase(s_deposit.end() );
 
 	std::string r_deposit = s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
 						  + s_deposit + ',' + s_deposit + ',' + s_deposit + ',' + s_deposit + ','
