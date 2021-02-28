@@ -17,6 +17,16 @@ double getDecimal() {
 
 	double returndouble = stod(num); //turn it back into double
 
+	if (returndouble == 0.00) {
+
+		returndouble += 0.01;
+	}
+
+	if (returndouble == 1.00) {
+
+		returndouble -= 0.01;
+	}
+
 	return returndouble; //return double
 }
 
@@ -57,7 +67,7 @@ double getRandomNormalLinearizedVariable(double mean, double stddev) { //NEED TO
 
 	if (percent < 0.1) {
 
-		floor = mean - (5 * stddev);
+		floor = mean - (4 * stddev);
 		ceiling = mean - (3 * stddev);
 		random = rand() % ceiling;
 	}
@@ -106,7 +116,7 @@ double getRandomNormalLinearizedVariable(double mean, double stddev) { //NEED TO
 	else if (percent < 100.0) {
 
 		floor = mean + (3 * stddev);
-		ceiling = mean + (5 * stddev); //need ceiling limt, +4 stddev?
+		ceiling = mean + (4 * stddev); //need ceiling limt, +4 stddev?
 
 		random = rand() % (ceiling - floor) + floor;
 	}
@@ -301,7 +311,7 @@ std::string getDeposit() { //need 12 of each of these
 		deposit /= 12;
 	}
 
-	t_deposit = (double)deposit + getDecimal();
+	t_deposit = (double)deposit +getDecimal(); /////////////////////////////////////////CHANGE HERE
 	std::string s_deposit = std::to_string(t_deposit);
 
 	//need to get rid of tailing 0's
@@ -384,7 +394,7 @@ int getWithdrawal(std::string deposit) {
 }
 */
 
-std::string getLoans(std::string deposit) {
+std::string getLoans() {
 
 	//80% have debt, ranges between 250-1500 per month, can use normal distribution or 
 	//your process in place for other variables, of those, half dont change each month, and half vary slightly
@@ -396,13 +406,15 @@ std::string getLoans(std::string deposit) {
 	std::string dynamicloans;
 
 	double loan = getRandomNormalLinearizedVariable(mean, stddev);
+	std::string s_loan = std::to_string(loan);
 
 	if (percent < 40.00) {
 		//condition for static loan
 
 		for (std::size_t i = 0; i < 13; i++) {
 
-
+			std::string temp = s_loan + ',';
+			staticloans = staticloans + temp;
 		}
 
 		return staticloans;
@@ -410,16 +422,27 @@ std::string getLoans(std::string deposit) {
 	else if (percent < 80.00) {
 		//condition for dynamic loan
 
+		for (std::size_t i = 0; i < 13; i++) {
+
+			double randomloan = getRandomNormalLinearizedVariable(loan, (.2 * loan));
+			std::string s_randomloan = std::to_string(randomloan);
+
+			std::string temp = s_randomloan + ',';
+			dynamicloans = dynamicloans + temp;
+		}
+
+
 		return dynamicloans;
 	}
-	else if (percent < 100.00) {
+	else {
 		//condition for no loans
+
+		noloans = ",0,0,0,0,0,0,0,0,0,0,0,0,";
 
 		return noloans;
 	}
 
-
-	return "its fucking 4am";
+	//return "its fucking 4am";
 }
 
 double getPurchases(std::string deposit) {
@@ -473,18 +496,12 @@ double getPurchases(std::string deposit) {
 	monthlyincome = income / 12;
 
 	//normalize AGAIN and add a random decimal
-	r_purchases = getRandomNormalLinearizedVariable(purchases, (.1 * monthlyincome)) + getDecimal();
+	r_purchases = getRandomNormalLinearizedVariable(purchases, (.1 * monthlyincome)); //+getDecimal();
 
 	//now take monthy purchases, and normalize that with stddev = .1*monthyincome
 
 
 	return r_purchases;
-}
-
-double getBalance() {
-
-	double weight = getRandomPercentage();
-	return 0;
 }
 
 void Test() {

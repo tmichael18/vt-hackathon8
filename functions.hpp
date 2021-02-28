@@ -19,7 +19,7 @@ int getInitialBalance(std::string deposit); // currently returns income
 
 std::string getDeposit();
 //int getWithdrawal(std::string deposit);
-std::string getLoans(std::string deposit);
+std::string getLoans();
 double getPurchases(std::string deposit);
 double getBalance();
 

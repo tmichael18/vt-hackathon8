@@ -11,17 +11,17 @@ TEST_CASE("Creating .csv file", "[functions]"){
 	std::ofstream myfile;
 	myfile.open("data.csv");
 	myfile << "index,first_name,last_name,street_number,street_address,city,state,zip_code,initial_balance,"
-		   << "1_deposit,2_deposit,3_deposit,4_deposit,5_deposit,6_deposit,7_deposit,8_deposit,9_deposit,10_deposit,11_deposit,12_deposit,"
-		   << "1_loans,2_loans,3_loans,4_loans,5_loans,6_loans,7_loans,8_loans,9_loans,10_loans,11_loans,12_loans,"
-		   << "1_purchases,2_purchases,3_purchases,4_purchases,5_purchases,6_purchases,7_purchases,8_purchases,9_purchases,10_purchases,11_purchases,12_purchases\n";
-	for (int i = 1; i < 11; i++) {
+		   << "deposit_1,deposit_2,deposit_3,deposit_4,deposit_5,deposit_6,deposit_7,deposit_8,deposit_9,deposit_10,deposit_11,deposit_12,"
+		   << "loans_1,loans_2,loans_3,loans_4,loans_5,loans_6,loans_7,loans_8,loans_9,loans_10,loans_11,loans_12,"
+		   << "purchases_1,purchases_2,purchases_3,purchases_4,purchases_5,purchases_6,purchases_7,purchases_8,purchases_9,purchases_10,purchases_11,purchases_12\n";
+	for (int i = 1; i < 10001; i++) {
 
 		std::string deposits = getDeposit();
 		double income = getIncomeBasedOnDeposit(deposits);
 
 		myfile << i << "," << getFirstName() << "," << getLastName() << "," << getStreetNum()
 			<< "," << getStreetAddress() << "," << getCity() << "," << getState()
-			<< "," << getZipCode() << "," << getInitialBalance(deposits) << "," << deposits << ","
+			<< "," << getZipCode() << "," << getInitialBalance(deposits) << "," << deposits 
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
 			//<< "," << getDeposit() << "," << getDeposit() << "," << getDeposit()
@@ -32,11 +32,12 @@ TEST_CASE("Creating .csv file", "[functions]"){
 			<< "," << getWithdrawal(deposits) << "," << getWithdrawal(deposits) << "," << getWithdrawal(deposits)
 			<< "," << getWithdrawal(deposits) << "," << getWithdrawal(deposits) << "," << getWithdrawal(deposits)
 			<< "," << getWithdrawal(deposits) << "," << getWithdrawal(deposits) << "," */
-			<< getLoans(deposits)
-			<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getLoans(deposits)
-			<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getLoans(deposits)
-			<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getLoans(deposits)
-			<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getPurchases(deposits)
+			<< getLoans()
+			//<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getLoans(deposits)
+			//<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getLoans(deposits)
+			//<< "," << getLoans(deposits) << "," << getLoans(deposits) << "," << getLoans(deposits)
+			//<< "," << getLoans(deposits) << "," << getLoans(deposits) 
+			<< getPurchases(deposits)
 			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getPurchases(deposits)
 			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getPurchases(deposits)
 			<< "," << getPurchases(deposits) << "," << getPurchases(deposits) << "," << getPurchases(deposits)
@@ -94,6 +95,14 @@ TEST_CASE("creating Michael's test.csv file", "[functions]") {
 
 	}
 	myfile << "This is the RandomLinearizationTest Count: " << count << "\n";
+
+	for (std::size_t i = 0; i < 21; i++) {
+		double percent = getRandomPercentage();
+		myfile << "This is the getLoans Tester: " << getLoans() << "\n";
+		//myfile << "This is the random percent: " << percent << "\n";
+	}
+
+
 
 	myfile.close();
 }
