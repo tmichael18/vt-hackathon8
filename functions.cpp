@@ -48,6 +48,72 @@ double getIncomeBasedOnDeposit(std::string s_deposit) {
 	return r_income;
 }
 
+double getRandomNormalLinearizedVariable(double mean, double stddev) { //NEED TO COMMENT THIS LATER
+
+	double percent = getRandomPercentage();
+	int floor = 0; //floor
+	int ceiling = 0; //ceiling
+	int random = 0;
+
+	if (percent < 0.1) {
+
+		floor = mean - (5 * stddev);
+		ceiling = mean - (3 * stddev);
+		random = rand() % ceiling;
+	}
+	else if (percent < 2.2) {
+
+		floor = mean - (3 * stddev);
+		ceiling = mean - (2 * stddev);
+
+		random = rand() % (ceiling - floor) + floor; 
+	}
+	else if (percent < 15.8) {
+
+		floor = mean - (2 * stddev);
+		ceiling = mean - (1 * stddev);
+
+		random = rand() % (ceiling - floor) + floor;
+	}
+	else if (percent < 49.9) {
+
+		floor = mean - (1 * stddev);
+		ceiling = mean - (0 * stddev);
+
+		random = rand() % (ceiling - floor) + floor;
+	}
+	else if (percent < 84.0) {
+
+		floor = mean + (0 * stddev);
+		ceiling = mean + (1 * stddev);
+
+		random = rand() % (ceiling - floor) + floor;
+	}
+	else if (percent < 97.6) {
+
+		floor = mean + (1 * stddev);
+		ceiling = mean + (2 * stddev);
+
+		random = rand() % (ceiling - floor) + floor;
+	}
+	else if (percent < 99.7) {
+
+		floor = mean + (2 * stddev);
+		ceiling = mean + (3 * stddev);
+
+		random = rand() % (ceiling - floor) + floor;
+	}
+	else if (percent < 100.0) {
+
+		floor = mean + (3 * stddev);
+		ceiling = mean + (5 * stddev); //need ceiling limt, +4 stddev?
+
+		random = rand() % (ceiling - floor) + floor;
+	}
+
+	return random;
+}
+
 
 std::string getFirstName() {
 	
@@ -263,78 +329,124 @@ std::string getDeposit() { //need 12 of each of these
 	//return r_deposit;
 }
 
-int getInitialBalance(std::string deposit) { //this is weight based
+int getInitialBalance(std::string deposit) { 
+	//use linear normal approximation
 
-	int balance = (int)getIncomeBasedOnDeposit(deposit);
-	return balance;
+	int income = (int)getIncomeBasedOnDeposit(deposit);
+	int savings = 0;
+	int stddev = 0;
+
+	if (income < 25000) {
+
+		savings = 6021;
+		stddev = 1000;
+	}
+	else if (income < 44999) {
+
+		savings = 11719;
+		stddev = 2000;
+	}
+	else if (income < 69999) {
+
+		savings = 13179;
+		stddev = 2000;
+	}
+	else if (income < 114999) {
+
+		savings = 15333;
+		stddev = 2000;
+	}
+	else if (income < 159999) {
+
+		savings = 37645;
+		stddev = 3000;
+	}
+	else {
+
+		savings = 117771;
+		stddev = 10000;
+	}
+
+	int initialbalance = (int)getRandomNormalLinearizedVariable((double)savings, (double)stddev);
+	/*
+	double negative = getRandomPercentage();
+	if (negative < 10.00) { //there is a 10% chance that the person is in debt
+
+		initialbalance = initialbalance - (2 * initialbalance);
+	} */
+
+	return initialbalance;
 }
 
-int getWithdrawal(double income) {
+/*
+int getWithdrawal(std::string deposit) {
 
-	double weight = getRandomPercentage();
-	int withdraws = 0;
+}
+*/
+
+double getLoans(std::string deposit) {
+
+
+
+}
+
+double getPurchases(std::string deposit) {
+	//use reasonable estimates, one estimate sasy about 76% of yearly income
+	//get random linearized estimate between 61-91 centered at 76 standard dev is 5
+	//do we assume the same amout of money spent each month, or should i normalize the normalizaiton for EXTRA randomness
+
+	//so take 6 income groups, spllit them up, less income means spend more
+	//after i split it up, randomize the amount the spend that month using linearization
+	double income = getIncomeBasedOnDeposit(deposit);
+	double purchasepercent  = 0.;
+	double stddev = 0.;
+	double purchases = 0.;
+	double r_purchases = 0.;
+	double monthlyincome = 0.;
+
+	if (income < 25000.) { //61-66
+
+		purchasepercent = .63;
+		stddev = .1;
+	}
+	else if (income < 44999.) {//66-71
+
+		purchasepercent = .68;
+		stddev = .1;
+	}
+	else if (income < 69999.) { //71-76
+
+		purchasepercent = .73;
+		stddev = .1;
+	}
+	else if (income < 114999.) {//76-81
+
+		purchasepercent = .78;
+		stddev = .1;
+	}
+	else if (income < 159999.) {//81-86
+
+		purchasepercent = .83;
+		stddev = .1;
+	}
+	else { //86-91
+
+		purchasepercent = .88;
+		stddev = .1;
+	}
 	
+	
+	purchases = (purchasepercent * income)/12;
 
-	//using if else sytax
-	if (weight < 10.0) {
+	monthlyincome = income / 12;
 
-		withdraws = rand() % 10001;
-	}
-	else if (weight < 20.0) {
+	//normalize AGAIN and add a random decimal
+	r_purchases = getRandomNormalLinearizedVariable(purchases, (.1 * monthlyincome)) + getDecimal();
 
-		
-	}
-	else if (weight < 30.0) {
-
-		
-	}
-	else if (weight < 45.0) {
-
-		
-	}
-	else if (weight < 60.0) {
-
-		
-	}
-	else if (weight < 75.0) {
-
-		
-	}
-	else if (weight < 85.0) {
-
-		
-	}
-	else if (weight < 94.0) {
-
-		
-	}
-	else if (weight < 97.0) {
-
-		
-	}
-	else if (weight < 99.7) {
-
-		
-	}
-	else if (weight < 100.0) {
-
-		
-	}
+	//now take monthy purchases, and normalize that with stddev = .1*monthyincome
 
 
-	return 0;
-}
-
-double getLoans(double income) {
-
-	double weight = getRandomPercentage();
-	return 0;
-}
-
-double getPurchases(double income) {
-
-	double weight = getRandomPercentage();
-	return 0;
+	return r_purchases;
 }
 
 double getBalance() {
