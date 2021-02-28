@@ -413,8 +413,15 @@ std::string getLoans() {
 
 		for (std::size_t i = 0; i < 13; i++) {
 
-			std::string temp = s_loan + ',';
-			staticloans = staticloans + temp;
+			if (i == 12) {
+
+				std::string temp = s_loan;
+				dynamicloans = dynamicloans + temp; //if last just add temp
+			}
+			else {
+				std::string temp = s_loan + ',';
+				staticloans = staticloans + temp;
+			}
 		}
 
 		return staticloans;
@@ -422,13 +429,21 @@ std::string getLoans() {
 	else if (percent < 80.00) {
 		//condition for dynamic loan
 
-		for (std::size_t i = 0; i < 13; i++) {
+		for (std::size_t i = 0; i < 12; i++) {
 
 			double randomloan = getRandomNormalLinearizedVariable(loan, (.2 * loan));
 			std::string s_randomloan = std::to_string(randomloan);
 
-			std::string temp = s_randomloan + ',';
-			dynamicloans = dynamicloans + temp;
+			if (i == 11) {
+
+				std::string temp = s_randomloan + ',';
+				dynamicloans = dynamicloans + temp; //if last just add temp
+			}
+			else {
+
+				std::string temp = s_randomloan + ',';
+				dynamicloans = dynamicloans + temp;
+			}
 		}
 
 
