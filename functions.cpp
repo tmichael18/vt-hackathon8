@@ -246,8 +246,8 @@ std::string getDeposit() { //need 12 of each of these
 	//using if else sytax
 	if (weight < 11.3) {
 
-		//gets random number between 0 and 10000
-		deposit = rand() % 10001; 
+		//gets random number between 5000 and 10000
+		deposit = rand() % 5000 + 5000;  //////////////////////////////ADDED INCOME FLOOR
 		deposit /= 12;
 	}
 	else if (weight < 19.3) {
@@ -496,7 +496,7 @@ double getPurchases(std::string deposit) {
 	monthlyincome = income / 12;
 
 	//normalize AGAIN and add a random decimal
-	r_purchases = getRandomNormalLinearizedVariable(purchases, (.1 * monthlyincome)); //+getDecimal();
+	r_purchases = getRandomNormalLinearizedVariable(purchases, (.1 * monthlyincome))+getDecimal();
 
 	//now take monthy purchases, and normalize that with stddev = .1*monthyincome
 

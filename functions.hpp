@@ -21,7 +21,6 @@ std::string getDeposit();
 //int getWithdrawal(std::string deposit);
 std::string getLoans();
 double getPurchases(std::string deposit);
-double getBalance();
 
 //other supporting functions
 double getRandomPercentage();
